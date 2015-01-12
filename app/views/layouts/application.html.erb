@@ -18,7 +18,8 @@
   <%= link_to 'Listing Courses', courses_path %>
   <%= link_to 'Listing Chapters', chapters_path %>
   <% if current_staff.email.to_s == "staff.admin@college.in" %>
-
+    <%= link_to 'Listing Staffs', '/get_staffs' %>
+    <%= link_to 'Listing Students', '/get_students' %>
   <% end %>
 <%elsif student_signed_in? %>
   <p>Hi <%= current_student.name %>  <%= link_to '    Wanna Logout', destroy_student_session_path, :method => :delete %></p>

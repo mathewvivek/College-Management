@@ -1,0 +1,32 @@
+  <h3>Staff List</h3>
+
+  <table border='1'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Phone</th>
+        <th>Department</th>
+        <th>Designation</th>
+        <th>Email</th>
+        <th>Employee Id</th>
+        <th>Joined Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @staffs.each do |staff| %>
+        <tr>
+          <td><%= staff.name %></td>
+          <td><%= staff.age %></td>
+          <td><%= staff.phone %></td>
+          <td><%= staff.department %></td>
+          <td><%= staff.designation %></td>
+          <td><%= staff.email %></td>
+          <td><%= staff.employee_id %></td>
+          <td><%= staff.created_at.to_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>

@@ -4,7 +4,7 @@ class EnrollmentsController < ApplicationController
   respond_to :html
 
   def index
-    @enrollments = current_student.enrollments
+    @enrollments = student_signed_in? ? current_student.enrollments : Enrollment.all
     respond_with(@enrollments)
   end
 

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   devise_for :students, :controllers => {:registrations => "students/registrations", :sessions => "students/sessions"}
   devise_for :staffs, :controllers => {:registrations => "staffs/registrations", :sessions => "staffs/sessions"}
 
+  get 'get_staffs' => "home#get_staffs"
+  get 'get_students' => "home#get_students"
+  
   root :to=> "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
