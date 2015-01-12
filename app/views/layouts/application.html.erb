@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CollegeManagement</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<h3>Welcome to the Institute of Technology</h3> 
+
+<% if staff_signed_in? %>
+  <p>Hi <%= current_staff.name %>  <%= link_to '    Wanna Logout', destroy_staff_session_path, :method => :delete %></p>
+  <%= link_to 'Listing Courses', courses_path %>
+  <%= link_to 'Listing Chapters', chapters_path %>
+  <% if current_staff.email.to_s == "staff.admin@college.in" %>
+
+  <% end %>
+<%elsif student_signed_in? %>
+  <p>Hi <%= current_student.name %>  <%= link_to '    Wanna Logout', destroy_student_session_path, :method => :delete %></p>
+  <%= link_to 'Available Courses', courses_path %>
+  <%= link_to 'My Enrollments', enrollments_path %>
+<%end%>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<%= form_for(@enrollment) do |f| %>
+
+<table border="1">
+<tr>
+    <th><strong>Name:</strong></th>
+    <td><%= current_student.name %>
+    <%= hidden_field_tag 'enrollment[student_id]', current_student.id %></td>
+</tr>
+
+<tr>
+    <th><strong>Course:</strong></th>
+    <% if @course.present? %>
+      <td><%= @course.name %></td>
+      <%= hidden_field_tag 'enrollment[course_id]', @course.id %>
+    <%end%></tr>
+
+  
+<tr>
+    <th><strong>Fee Paid:</strong></th>
+    <td><%= f.check_box :fee_paid %> Check this if you are willing to pay online </td>
+    </tr>
+
+  
+  <% if @course.chapters.count > 0 %>
+    <tr>
+    <th><strong>Chapters</strong></th>
+      <td><table border='1'>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @course.chapters.order('order_number').each do |chapter| %>
+            <tr>
+              <td><%= chapter.order_number %></td>
+              <td><%= chapter.name %></td>
+            </tr>
+            <%end%>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  <%else%>
+  <tr><th></th><td><%= "No Chapters" %></td></tr>
+  <%end%>
+  </table>
+  <br/>
+
+
+  <div class="actions">
+    <%= f.submit("Enroll") %>
+  </div>
+<% end %>

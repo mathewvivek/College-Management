@@ -1,0 +1,26 @@
+<h3>Listing Enrollments</h3>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Fee paid</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enrollments.each do |enrollment| %>
+      <tr>
+        <td><%= enrollment.course.name %></td>
+        <td><%= enrollment.fee_paid? ? "Paid" : "Pending" %></td>
+        <td><%= enrollment.created_at.to_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "Back", root_path %>
+

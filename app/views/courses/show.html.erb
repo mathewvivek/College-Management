@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @course.description %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @course.department %>
+</p>
+
+<p>
+  <strong>Duration(months):</strong>
+  <%= @course.duration_in_months %>
+</p>
+
+<p>
+  <strong>Fee Amount:</strong>
+  <%= @course.fee_amount %>
+</p>
+
+<% if @course.chapters.count > 0 %>
+  <strong>Chapters</strong>
+  <table border='1'>
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @course.chapters.order('order_number').each do |chapter| %>
+      <tr>
+        <td><%= chapter.order_number %></td>
+        <td><%= chapter.name %></td>
+      </tr>
+      <%end%>
+    </tbody>  
+    </table>
+<%else%>
+<%= "No Chapters" %>
+<%end%>
+
+<br/>
+
+<%= link_to 'Edit', edit_course_path(@course) if staff_signed_in? %> 
+<%= link_to 'Back', courses_path %>
+
