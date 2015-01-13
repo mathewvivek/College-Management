@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
         redirect_to root_path, :notice => "You are not authorized to perform this task"
       end
     end
+
+    def admin_option?
+      staff_signed_in? && current_staff.email.to_s == "staff.admin@college.in"
+    end
 end

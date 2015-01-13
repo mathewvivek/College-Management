@@ -5,7 +5,8 @@ class ChaptersController < ApplicationController
   respond_to :html
 
   def index
-    @chapters = Chapter.all
+    @chapters = staff_signed_in? ? current_staff_chapters : Chapter.all
+    @chapters = Chapter.all if admin_option?
     respond_with(@chapters)
   end
 
@@ -38,6 +39,15 @@ class ChaptersController < ApplicationController
   end
 
   private
+
+    def current_staff_chapters
+      Chapter.where("course_id in (#{staff_courses})")
+    end
+
+    def staff_courses
+      current_staff.courses.collect(&:id).join(',')
+    end
+
     def set_chapter
       @chapter = Chapter.find(params[:id])
     end

@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Course</th>
+      <% if staff_signed_in? %><th>Student</th><%end%>
       <th>Fee paid</th>
       <th>Date</th>
     </tr>
@@ -13,6 +14,7 @@
     <% @enrollments.each do |enrollment| %>
       <tr>
         <td><%= enrollment.course.name %></td>
+        <% if staff_signed_in? %><td><%= enrollment.student.name %></td><%end%>
         <td><%= enrollment.fee_paid? ? "Paid" : "Pending" %></td>
         <td><%= enrollment.created_at.to_date %></td>
       </tr>

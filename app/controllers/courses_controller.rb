@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = staff_signed_in? ? current_staff.courses : Course.all
+    @courses = Course.all if admin_option?
     respond_with(@courses)
   end
 
@@ -39,6 +40,7 @@ class CoursesController < ApplicationController
   end
 
   private
+
     def set_course
       @course = Course.find(params[:id])
     end
